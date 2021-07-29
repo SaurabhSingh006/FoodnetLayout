@@ -1,0 +1,38 @@
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="sidenavStatus" [mode]="mobileQuery.matches ? 'over' : 'side' ">
+    <h1>FoodNet</h1>
+    <h3>Menu</h3>
+
+    <div (click)="onSidenavLinkClick()" class="sidenav__link" *ngFor="let link of sidenav" [routerLink]="link.route" routerLinkActive="sidenavLinkActive" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="sidenav__anchor">{{ link.title }}</a>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <!-- NAVIGATION -->
+    <div class="nav">
+      <div>
+        <button *ngIf="mobileQuery.matches" class="nav__menu" (click)="onMenuClick()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="nav__login">
+        <p class="nav__login--text">Login</p>
+
+        <div class="nav__login--imgContainer">
+          <img src="https://banglarshiksha.gov.in/assets/frontend/images/login_placeholder.jpg" height="35px">
+        </div>
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+
+    <!-- <br><br><br>
+    <button (click)="onMenuClick()">Toggle</button>
+    <br>
+    sidebar status : {{ sidenavStatus }} <br>
+
+    mobile status : {{ mobileQuery.matches }} -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
